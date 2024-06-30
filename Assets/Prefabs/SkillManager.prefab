@@ -1,0 +1,165 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5314734735592321221
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7380294866475778728}
+  - component: {fileID: 6462818380210484792}
+  - component: {fileID: 5673964429745900331}
+  - component: {fileID: 7061987047921853379}
+  - component: {fileID: 8508013162915068062}
+  - component: {fileID: 338480190108002846}
+  - component: {fileID: 7229130136424915218}
+  m_Layer: 0
+  m_Name: SkillManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7380294866475778728
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5314734735592321221}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.40218252, y: -6.037701, z: 1.2202803}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6462818380210484792
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5314734735592321221}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba37613fd46a7354f843f77a2b2193f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5673964429745900331
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5314734735592321221}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 761e7cbfc1caf59438341c0941d21e0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cooldown: 1
+--- !u!114 &7061987047921853379
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5314734735592321221}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 690f08450a952d04bbb3ce12452236f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cooldown: 0
+  clonePrefab: {fileID: 9160939646378215550, guid: 82e390aff33e3be438c8291885f243a7, type: 3}
+  cloneDuration: 1.5
+  canAttack: 1
+  creatCloneOnDashStart: 1
+  createCloneOnDashOver: 1
+  canCreateCloneOnCounterAttack: 1
+  canDuplicateClone: 1
+  chanceToDuplicate: 0
+  crystalInseadOfClone: 1
+--- !u!114 &8508013162915068062
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5314734735592321221}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51e6527bfe1d3b34abc6fac071219028, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cooldown: 0
+  swordType: 3
+  bounceAmount: 4
+  bounceGravity: 1
+  bounceSpeed: 50
+  pierceAmount: 2
+  pierceGravity: 1
+  hitCooldown: 0.1
+  maxTravelDistance: 7
+  spinDuration: 2
+  spinGravity: 1
+  swordPrefab: {fileID: 4822870018884435915, guid: 659acffda8d07394ca42277b739b9d14, type: 3}
+  launchForce: {x: 35, y: 25}
+  swordGravity: 0.5
+  freezeTimeDuration: 1.5
+  returnSpeed: 15
+  numberOfDots: 20
+  spaceBeetwenDots: 0.07
+  dotPrefab: {fileID: 9037650428537424703, guid: 5e4a7745cf1d09840b73d39b761e1f77, type: 3}
+  dotsParent: {fileID: 0}
+--- !u!114 &338480190108002846
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5314734735592321221}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86873055e088f6f4ba73123fc48328be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cooldown: 0
+  amountOfAttacks: 15
+  cloneCooldown: 0.35
+  blackholeDuration: 3
+  blackHolePrefab: {fileID: 520593862408160113, guid: 5f23b46a9bf19fe48945cd86a907c1d6, type: 3}
+  maxSize: 15
+  growSpeed: 3
+  shrinkSpeed: 6
+--- !u!114 &7229130136424915218
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5314734735592321221}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 312955ab38245ab478f18f453b1fbdb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cooldown: 0
+  crystalDuration: 1.5
+  crystalPrefab: {fileID: 4017398500736977651, guid: dc0a3fa34257af146a6a54bbdfdf5719, type: 3}
+  cloneInsteadOfCrystal: 0
+  canExplode: 1
+  canMoveToEnemy: 1
+  moveSpeed: 4
+  canUseMultiStacks: 0
+  amountOfStacks: 3
+  multiStackCooldown: 4
+  useTimeWondow: 2.5
+  crystalLeft:
+  - {fileID: 4017398500736977651, guid: dc0a3fa34257af146a6a54bbdfdf5719, type: 3}
+  - {fileID: 4017398500736977651, guid: dc0a3fa34257af146a6a54bbdfdf5719, type: 3}
+  - {fileID: 4017398500736977651, guid: dc0a3fa34257af146a6a54bbdfdf5719, type: 3}
