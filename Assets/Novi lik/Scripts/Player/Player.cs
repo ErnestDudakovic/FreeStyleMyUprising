@@ -166,4 +166,5 @@ public class Player : Entity
 
         stateMachine.ChangeState(deadState);
     }
+
 }
