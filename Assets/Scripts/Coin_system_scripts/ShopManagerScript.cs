@@ -1,4 +1,4 @@
-/*using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -84,7 +84,7 @@ public void Buy(int itemID)
                 PlayerStats playerStats = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>();
                 if (playerStats != null)
                 {
-                    playerStats.IncreaseHealthByTen();
+                    //playerStats.IncreaseHealthByTen();
                 }
                 else
                 {
@@ -112,13 +112,13 @@ public void Buy(int itemID)
 {
     if (shopItems[3, itemID] > 0)
     {
-        if (itemID == 1) // Check if the sold item is the first one
-        {
-            PlayerStats playerStats = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>();
-            // Revert the changes to current and max health
-            playerStats.maxHealth -= 10;
-            playerStats.currentHealth = Mathf.Min(playerStats.currentHealth, playerStats.maxHealth); // Ensure current health doesn't exceed max health
-        }
+        // if (itemID == 1) // Check if the sold item is the first one
+        // {
+        //     PlayerStats playerStats = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>();
+        //     // Revert the changes to current and max health
+        //     playerStats.maxHealth -= 10;
+        //     playerStats.currentHealth = Mathf.Min(playerStats.currentHealth, playerStats.maxHealth); // Ensure current health doesn't exceed max health
+        // }
 
         shopItems[3, itemID]--;
         coins += shopItems[2, itemID];
@@ -190,4 +190,4 @@ public void Buy(int itemID)
             }
         }
     }
-}*/
+}

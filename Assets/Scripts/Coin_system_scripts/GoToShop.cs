@@ -31,6 +31,10 @@ public class GoToShop : MonoBehaviour, IInteractable
         {
             StartCoroutine(levelLoader.LoadLevel(2)); // Load the other scene
         }
+            else if (gameObject.name == "TeleportajMeUShop")
+        {
+            StartCoroutine(levelLoader.LoadLevel(10)); // Load the other scene
+        }
         else
         {
             Debug.LogWarning("Unknown portal name: " + gameObject.name);
