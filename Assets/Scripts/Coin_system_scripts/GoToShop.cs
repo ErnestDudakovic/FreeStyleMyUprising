@@ -1,6 +1,6 @@
-// DoorInteraction.cs
-/*using UnityEngine;
-using static PlayerController;
+
+using UnityEngine;
+using static Player;
 
 public class GoToShop : MonoBehaviour, IInteractable
 {
@@ -25,7 +25,7 @@ public class GoToShop : MonoBehaviour, IInteractable
         // Check the name of the GameObject this script is attached to
         if (gameObject.name == "PortalToShopppp")
         {
-            StartCoroutine(levelLoader.LoadLevel(5)); // Load the shop scene
+            StartCoroutine(levelLoader.LoadLevel(7)); // Load the shop scene
         }
         else if (gameObject.name == "Portal za testiranje healtha")
         {
@@ -37,4 +37,4 @@ public class GoToShop : MonoBehaviour, IInteractable
         }
     }
 
-}*/
+}

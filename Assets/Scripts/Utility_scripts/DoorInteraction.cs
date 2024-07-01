@@ -1,6 +1,6 @@
-// DoorInteraction.cs
-/*using UnityEngine;
-using static PlayerController;
+
+using UnityEngine;
+using static Player;
 
 public class DoorInteraction : MonoBehaviour, IInteractable
 {
@@ -20,5 +20,5 @@ public class DoorInteraction : MonoBehaviour, IInteractable
     {
         levelLoader.LoadNextLevel();
     }
-}*/
+}
 

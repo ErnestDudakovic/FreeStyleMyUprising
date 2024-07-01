@@ -56,5 +56,5 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "Backup_2.sln"
+    "dotnet.defaultSolution": "slanje.sln"
 }

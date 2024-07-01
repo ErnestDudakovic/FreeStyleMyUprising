@@ -22,10 +22,10 @@ public class Player : Entity
     private float defaultDashSpeed;
     public float dashDir { get; private set; }
 
-
     public SkillManager skill { get; private set; }
     public GameObject sword {  get ; private set; }
 
+    private IInteractable interactable; // Add this line
 
     #region States
     public PlayerStateMachine stateMachine { get; private set; }
@@ -78,12 +78,10 @@ public class Player : Entity
 
         stateMachine.Initialize(idleState);
 
-
         defaultMoveSpeed = moveSpeed;
         defaultJumpForce = jumpForce;
         defaultDashSpeed = dashSpeed;
     }
-
 
     protected override void Update()
     {
@@ -93,9 +91,12 @@ public class Player : Entity
 
         CheckForDashInput();
 
-
         if (Input.GetKeyDown(KeyCode.F))
             skill.crystal.CanUseSkill();
+
+        // Interaction logic
+        if (Input.GetKeyDown(KeyCode.E))
+            InteractWithObject();
     }
 
     public override void SlowEntityBy(float _slowPercentage, float _slowDuration)
@@ -106,7 +107,6 @@ public class Player : Entity
         anim.speed = anim.speed * (1 - _slowPercentage);
 
         Invoke("ReturnDefaultSpeed", _slowDuration);
-        
     }
 
     protected override void ReturnDefaultSpeed()
@@ -144,18 +144,13 @@ public class Player : Entity
         if (IsWallDetected())
             return;
 
-
-
-
         if (Input.GetKeyDown(KeyCode.LeftShift) && SkillManager.instance.dash.CanUseSkill())
         {
-
             dashDir = Input.GetAxisRaw("Horizontal");
 
             if (dashDir == 0)
                 dashDir = facingDir;
 
-            
             stateMachine.ChangeState(dashState);
         }
     }
@@ -167,4 +162,52 @@ public class Player : Entity
         stateMachine.ChangeState(deadState);
     }
 
+    private void InteractWithObject()
+    {
+        if (interactable != null)
+        {
+            interactable.Interact();
+        }
+        else
+        {
+            Debug.Log("No interactable object found.");
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Interactable"))
+        {
+            interactable = collision.GetComponent<IInteractable>();
+        }
+
+        if (collision.gameObject.CompareTag("Coin"))
+        {
+            Debug.Log("Coin picked up!"); // Log that a coin is picked up
+            Destroy(collision.gameObject);
+
+            // Log current coin count before updating
+            Debug.Log("Current coin count (before): " + CoinManager.instance.coinCount);
+
+            // Update coin count using the method
+            CoinManager.instance.UpdateCoinCount(CoinManager.instance.coinCount + 1);
+
+            // Log updated coin count
+            Debug.Log("Current coin count (after): " + CoinManager.instance.coinCount);
+            Debug.Log("CoinManager coin count: " + CoinManager.instance.coinCount);
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Interactable") && interactable != null)
+        {
+            interactable = null;
+        }
+    }
+
+    public interface IInteractable
+    {
+        void Interact();
+    }
 }
