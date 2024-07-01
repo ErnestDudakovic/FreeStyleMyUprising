@@ -7,16 +7,6 @@ using UnityEngine.SceneManagement;
 
 public class ShopManagerScript : MonoBehaviour
 {
-
-
-//RESET SPREMLJENIH STATOVA I COINA
-    // public void ResetPlayerPrefs()
-    // {
-    //     PlayerPrefs.DeleteAll();
-    //     PlayerPrefs.Save();
-    //     Debug.Log("All PlayerPrefs data has been reset.");
-    // }
-
     public int[,] shopItems = new int[5, 5];
     public float coins;
     public Text CoinsTXT;
@@ -41,7 +31,7 @@ public class ShopManagerScript : MonoBehaviour
         }
 
         //RESET SPREMLJENIH STATOVA I COINA
-       // ResetPlayerPrefs();
+        // ResetPlayerPrefs();
     }
 
     void InitializeShopItems()
@@ -67,72 +57,69 @@ public class ShopManagerScript : MonoBehaviour
         CoinsTXT.text = "Coins: " + coins.ToString();
     }
 
-public void Buy(int itemID)
-{
-    if (!purchaseLocked)
+    public void Buy(int itemID)
     {
-        if (coins >= shopItems[2, itemID])
+        if (!purchaseLocked)
         {
-            coins -= shopItems[2, itemID];
-            shopItems[3, itemID]++;
-            UpdateCoinsText();
-            UpdateItemQuantityText(itemID);
-
-            // If itemID is 1, increase current and max health by 10
-            if (itemID == 1)
+            if (coins >= shopItems[2, itemID])
             {
-                PlayerStats playerStats = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>();
-                if (playerStats != null)
-                {
-                    //playerStats.IncreaseHealthByTen();
-                }
-                else
-                {
-                    Debug.LogError("PlayerStats component not found on the player GameObject!");
-                }
-            }
+                coins -= shopItems[2, itemID];
+                shopItems[3, itemID]++;
+                UpdateCoinsText();
+                UpdateItemQuantityText(itemID);
 
-            SavePurchases(); // Save purchases after buying
+                // If itemID is 1, increase current and max health by 10
+                if (itemID == 1)
+                {
+                     CharacterStats characterStats = FindObjectOfType<CharacterStats>();
+                if (characterStats != null)
+                {
+                    characterStats.IncreaseHealthByTen();
+                }
+                    else
+                    {
+                        Debug.LogError("CharacterStats component not found on the player GameObject!");
+                    }
+                }
+
+                SavePurchases(); // Save purchases after buying
+            }
+            else
+            {
+                Debug.Log("Not enough coins to purchase item.");
+            }
+            coinManager.UpdateCoinCount((int)coins);
         }
         else
         {
-            Debug.Log("Not enough coins to purchase item.");
+            Debug.Log("Purchase is locked. Cannot buy more items.");
         }
-        coinManager.UpdateCoinCount((int)coins);
     }
-    else
+
+    public void Sell(int itemID)
     {
-        Debug.Log("Purchase is locked. Cannot buy more items.");
+        if (shopItems[3, itemID] > 0)
+        {
+            // if (itemID == 1) // Check if the sold item is the first one
+            // {
+            //     CharacterStats playerStats = GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterStats>();
+            //     // Revert the changes to current and max health
+            //     playerStats.maxHealth -= 10;
+            //     playerStats.currentHealth = Mathf.Min(playerStats.currentHealth, playerStats.maxHealth); // Ensure current health doesn't exceed max health
+            // }
+
+            shopItems[3, itemID]--;
+            coins += shopItems[2, itemID];
+            UpdateCoinsText();
+            UpdateItemQuantityText(itemID);
+            coinManager.UpdateCoinCount((int)coins);
+            SavePurchases(); // Save purchases after selling
+        }
+        else
+        {
+            Debug.Log("No items to sell.");
+        }
     }
-}
-
-
-
-   public void Sell(int itemID)
-{
-    if (shopItems[3, itemID] > 0)
-    {
-        // if (itemID == 1) // Check if the sold item is the first one
-        // {
-        //     PlayerStats playerStats = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>();
-        //     // Revert the changes to current and max health
-        //     playerStats.maxHealth -= 10;
-        //     playerStats.currentHealth = Mathf.Min(playerStats.currentHealth, playerStats.maxHealth); // Ensure current health doesn't exceed max health
-        // }
-
-        shopItems[3, itemID]--;
-        coins += shopItems[2, itemID];
-        UpdateCoinsText();
-        UpdateItemQuantityText(itemID);
-        coinManager.UpdateCoinCount((int)coins);
-        SavePurchases(); // Save purchases after selling
-    }
-    else
-    {
-        Debug.Log("No items to sell.");
-    }
-}
-
 
     void UpdateItemQuantityText(int itemID)
     {
@@ -166,7 +153,7 @@ public void Buy(int itemID)
 
     public void ReturnToHUB()
     {
-        SceneManager.LoadScene(4);
+        SceneManager.LoadScene(6);
     }
 
     // Save purchases to PlayerPrefs
