@@ -25,11 +25,15 @@ public class GoToShop : MonoBehaviour, IInteractable
         // Check the name of the GameObject this script is attached to
         if (gameObject.name == "PortalToShopppp")
         {
-            StartCoroutine(levelLoader.LoadLevel(7)); // Load the shop scene
+            StartCoroutine(levelLoader.LoadLevel(11)); // Load the shop scene
         }
         else if (gameObject.name == "Portal za testiranje healtha")
         {
             StartCoroutine(levelLoader.LoadLevel(2)); // Load the other scene
+        }
+            else if (gameObject.name == "TeleportajMeUShop")
+        {
+            StartCoroutine(levelLoader.LoadLevel(10)); // Load the other scene
         }
         else
         {
