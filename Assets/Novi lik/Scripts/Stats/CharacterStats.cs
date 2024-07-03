@@ -49,40 +49,14 @@ public class CharacterStats : MonoBehaviour
     {
         critPower.SetDefaultValue(150);
         currentHealth = GetMaxHealthValue();
-    LoadHealth();
+
     currentHealth = GetMaxHealthValue();
         fx = GetComponent<EntityFX>();
     }
 
-    public void IncreaseHealthByTen()
-{
-    maxHealth.SetBaseValue(maxHealth.GetBaseValue() + 10);
-    currentHealth = Mathf.Clamp(currentHealth + 10, 0, GetMaxHealthValue());
-    SaveHealth();
+  
 
-    if (onHealthChanged != null)
-        onHealthChanged();
-}
 
-private void SaveHealth()
-{
-    PlayerPrefs.SetInt("MaxHealth", maxHealth.GetBaseValue());
-    PlayerPrefs.SetInt("CurrentHealth", currentHealth);
-    PlayerPrefs.Save();
-}
-
-private void LoadHealth()
-{
-    if (PlayerPrefs.HasKey("MaxHealth"))
-    {
-        maxHealth.SetBaseValue(PlayerPrefs.GetInt("MaxHealth"));
-    }
-
-    if (PlayerPrefs.HasKey("CurrentHealth"))
-    {
-        currentHealth = PlayerPrefs.GetInt("CurrentHealth");
-    }
-}
     protected virtual void Update()
     {
         ignitedTimer -= Time.deltaTime;

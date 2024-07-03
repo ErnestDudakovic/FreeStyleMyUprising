@@ -68,17 +68,29 @@ public class ShopManagerScript : MonoBehaviour
                 UpdateCoinsText();
                 UpdateItemQuantityText(itemID);
 
-                // If itemID is 1, increase current and max health by 10
+                // Check if the purchased item is the one to upgrade player health
                 if (itemID == 1)
                 {
-                     CharacterStats characterStats = FindObjectOfType<CharacterStats>();
-                if (characterStats != null)
-                {
-                    characterStats.IncreaseHealthByTen();
-                }
+                    PlayerStats playerStats = FindObjectOfType<PlayerStats>();
+                    if (playerStats != null)
+                    {
+                        playerStats.IncreaseHealthByTen();
+                    }
                     else
                     {
-                        Debug.LogError("CharacterStats component not found on the player GameObject!");
+                        Debug.LogError("PlayerStats component not found on the player GameObject!");
+                    }
+                }
+                else if (itemID == 2) // Assuming itemID 2 corresponds to damage upgrade
+                {
+                    PlayerStats playerStats = FindObjectOfType<PlayerStats>();
+                    if (playerStats != null)
+                    {
+                        playerStats.IncreaseDamageByThirty();
+                    }
+                    else
+                    {
+                        Debug.LogError("PlayerStats component not found on the player GameObject!");
                     }
                 }
 
@@ -100,19 +112,37 @@ public class ShopManagerScript : MonoBehaviour
     {
         if (shopItems[3, itemID] > 0)
         {
-            // if (itemID == 1) // Check if the sold item is the first one
-            // {
-            //     CharacterStats playerStats = GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterStats>();
-            //     // Revert the changes to current and max health
-            //     playerStats.maxHealth -= 10;
-            //     playerStats.currentHealth = Mathf.Min(playerStats.currentHealth, playerStats.maxHealth); // Ensure current health doesn't exceed max health
-            // }
-
-            shopItems[3, itemID]--;
-            coins += shopItems[2, itemID];
+            coins += shopItems[2, itemID]; // Add back the coins received from selling
+            shopItems[3, itemID]--; // Decrease the quantity of the sold item
             UpdateCoinsText();
             UpdateItemQuantityText(itemID);
-            coinManager.UpdateCoinCount((int)coins);
+
+            // Check if the sold item affects player stats
+            if (itemID == 1) // Assuming itemID 1 corresponds to health upgrade
+            {
+                PlayerStats playerStats = FindObjectOfType<PlayerStats>();
+                if (playerStats != null)
+                {
+                    playerStats.DecreaseHealthByTen(); // Implement a method to decrease health if needed
+                }
+                else
+                {
+                    Debug.LogError("PlayerStats component not found on the player GameObject!");
+                }
+            }
+            else if (itemID == 2) // Assuming itemID 2 corresponds to damage upgrade
+            {
+                PlayerStats playerStats = FindObjectOfType<PlayerStats>();
+                if (playerStats != null)
+                {
+                    playerStats.DecreaseDamageByThirty(); // Implement a method to decrease damage if needed
+                }
+                else
+                {
+                    Debug.LogError("PlayerStats component not found on the player GameObject!");
+                }
+            }
+
             SavePurchases(); // Save purchases after selling
         }
         else
