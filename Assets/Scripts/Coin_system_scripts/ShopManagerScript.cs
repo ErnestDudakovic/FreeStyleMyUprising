@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class ShopManagerScript : MonoBehaviour
 {
-    public int[,] shopItems = new int[5, 5];
+    public int[,] shopItems = new int[7, 7]; // Update the size of the array
     public float coins;
     public Text CoinsTXT;
     public bool purchaseLocked = false;
@@ -40,16 +40,22 @@ public class ShopManagerScript : MonoBehaviour
         shopItems[1, 2] = 2;
         shopItems[1, 3] = 3;
         shopItems[1, 4] = 4;
+        shopItems[1, 5] = 5; // Critical chance upgrade item ID
+        shopItems[1, 6] = 6; // Critical power upgrade item ID
 
         shopItems[2, 1] = 1;
         shopItems[2, 2] = 2;
         shopItems[2, 3] = 3;
         shopItems[2, 4] = 10;
+        shopItems[2, 5] = 15; // Price for critical chance upgrade
+        shopItems[2, 6] = 20; // Price for critical power upgrade
 
         shopItems[3, 1] = 0;
         shopItems[3, 2] = 0;
         shopItems[3, 3] = 0;
         shopItems[3, 4] = 0;
+        shopItems[3, 5] = 0; // Initial quantity for critical chance upgrade
+        shopItems[3, 6] = 0; // Initial quantity for critical power upgrade
     }
 
     void UpdateCoinsText()
@@ -68,33 +74,40 @@ public class ShopManagerScript : MonoBehaviour
                 UpdateCoinsText();
                 UpdateItemQuantityText(itemID);
 
-                // Check if the purchased item is the one to upgrade player health
-                if (itemID == 1)
+                PlayerStats playerStats = FindObjectOfType<PlayerStats>();
+                if (playerStats != null)
                 {
-                    PlayerStats playerStats = FindObjectOfType<PlayerStats>();
-                    if (playerStats != null)
+                    if (itemID == 1)
                     {
                         playerStats.IncreaseHealthByTen();
                     }
-                    else
-                    {
-                        Debug.LogError("PlayerStats component not found on the player GameObject!");
-                    }
-                }
-                else if (itemID == 2) // Assuming itemID 2 corresponds to damage upgrade
-                {
-                    PlayerStats playerStats = FindObjectOfType<PlayerStats>();
-                    if (playerStats != null)
+                    else if (itemID == 2)
                     {
                         playerStats.IncreaseDamageByThirty();
                     }
-                    else
+                    else if (itemID == 3) // Armor upgrade
                     {
-                        Debug.LogError("PlayerStats component not found on the player GameObject!");
+                        playerStats.IncreaseArmorByFive();
+                    }
+                    else if (itemID == 4) // Dash speed upgrade
+                    {
+                        playerStats.IncreaseDashSpeedByHalf();
+                    }
+                    else if (itemID == 5) // Critical chance upgrade
+                    {
+                        playerStats.IncreaseCritChanceByOne();
+                    }
+                    else if (itemID == 6) // Critical power upgrade
+                    {
+                        playerStats.IncreaseCritPowerByTen();
                     }
                 }
+                else
+                {
+                    Debug.LogError("PlayerStats component not found on the player GameObject!");
+                }
 
-                SavePurchases(); // Save purchases after buying
+                SavePurchases();
             }
             else
             {
@@ -112,38 +125,45 @@ public class ShopManagerScript : MonoBehaviour
     {
         if (shopItems[3, itemID] > 0)
         {
-            coins += shopItems[2, itemID]; // Add back the coins received from selling
-            shopItems[3, itemID]--; // Decrease the quantity of the sold item
+            coins += shopItems[2, itemID];
+            shopItems[3, itemID]--;
             UpdateCoinsText();
             UpdateItemQuantityText(itemID);
 
-            // Check if the sold item affects player stats
-            if (itemID == 1) // Assuming itemID 1 corresponds to health upgrade
+            PlayerStats playerStats = FindObjectOfType<PlayerStats>();
+            if (playerStats != null)
             {
-                PlayerStats playerStats = FindObjectOfType<PlayerStats>();
-                if (playerStats != null)
+                if (itemID == 1)
                 {
-                    playerStats.DecreaseHealthByTen(); // Implement a method to decrease health if needed
+                    playerStats.DecreaseHealthByTen();
                 }
-                else
+                else if (itemID == 2)
                 {
-                    Debug.LogError("PlayerStats component not found on the player GameObject!");
+                    playerStats.DecreaseDamageByThirty();
+                }
+                else if (itemID == 3) // Armor downgrade
+                {
+                    playerStats.DecreaseArmorByFive();
+                }
+                else if (itemID == 4) // Dash speed downgrade
+                {
+                    playerStats.DecreaseDashSpeedByHalf();
+                }
+                else if (itemID == 5) // Critical chance downgrade
+                {
+                    playerStats.DecreaseCritChanceByOne();
+                }
+                else if (itemID == 6) // Critical power downgrade
+                {
+                    playerStats.DecreaseCritPowerByTen();
                 }
             }
-            else if (itemID == 2) // Assuming itemID 2 corresponds to damage upgrade
+            else
             {
-                PlayerStats playerStats = FindObjectOfType<PlayerStats>();
-                if (playerStats != null)
-                {
-                    playerStats.DecreaseDamageByThirty(); // Implement a method to decrease damage if needed
-                }
-                else
-                {
-                    Debug.LogError("PlayerStats component not found on the player GameObject!");
-                }
+                Debug.LogError("PlayerStats component not found on the player GameObject!");
             }
 
-            SavePurchases(); // Save purchases after selling
+            SavePurchases();
         }
         else
         {
@@ -183,7 +203,7 @@ public class ShopManagerScript : MonoBehaviour
 
     public void ReturnToHUB()
     {
-        SceneManager.LoadScene(6);
+        SceneManager.LoadScene(7);
     }
 
     // Save purchases to PlayerPrefs

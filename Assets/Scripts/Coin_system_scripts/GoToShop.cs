@@ -33,7 +33,7 @@ public class GoToShop : MonoBehaviour, IInteractable
         }
             else if (gameObject.name == "TeleportajMeUShop")
         {
-            StartCoroutine(levelLoader.LoadLevel(10)); // Load the other scene
+            StartCoroutine(levelLoader.LoadLevel(11)); // Load the other scene
         }
         else
         {

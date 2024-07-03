@@ -57,20 +57,79 @@ public class PlayerStats : CharacterStats
         SavePlayerStats();
     }
 
-    private void SavePlayerStats()
+    public void IncreaseArmorByFive()
     {
-        PlayerPrefs.SetInt("MaxHealth", maxHealth.GetBaseValue());
-        PlayerPrefs.SetInt("CurrentHealth", currentHealth);
-        PlayerPrefs.SetInt("Damage", damage.GetBaseValue());
-        PlayerPrefs.Save();
+        armor.SetBaseValue(armor.GetBaseValue() + 1);
+        SavePlayerStats();
     }
 
-    // Load saved stats when the game starts or the player object is created
+    public void DecreaseArmorByFive()
+    {
+        armor.SetBaseValue(armor.GetBaseValue() - 1);
+        SavePlayerStats();
+    }
+
+    public void IncreaseDashSpeedByHalf()
+    {
+        // Assuming dash speed is represented as a float in the player class
+        player.dashSpeed += 0.5f;
+        SavePlayerStats();
+    }
+
+    public void DecreaseDashSpeedByHalf()
+    {
+        // Assuming dash speed is represented as a float in the player class
+        player.dashSpeed -= 0.5f;
+        SavePlayerStats();
+    }
+
+    public void IncreaseCritChanceByOne()
+    {
+        critChance.SetBaseValue(critChance.GetBaseValue() + 1);
+        SavePlayerStats();
+    }
+
+    public void DecreaseCritChanceByOne()
+    {
+        critChance.SetBaseValue(critChance.GetBaseValue() - 1);
+        SavePlayerStats();
+    }
+
+    public void IncreaseCritPowerByTen()
+    {
+        critPower.SetBaseValue(critPower.GetBaseValue() + 10);
+        SavePlayerStats();
+    }
+
+    public void DecreaseCritPowerByTen()
+    {
+        critPower.SetBaseValue(critPower.GetBaseValue() - 10);
+        SavePlayerStats();
+    }
+
+ private void SavePlayerStats()
+{
+    PlayerPrefs.SetInt("PlayerMaxHealth", (int)maxHealth.GetBaseValue());
+    PlayerPrefs.SetInt("PlayerCurrentHealth", (int)currentHealth);
+    PlayerPrefs.SetInt("PlayerDamage", (int)damage.GetBaseValue());
+    PlayerPrefs.SetInt("PlayerArmor", (int)armor.GetBaseValue());
+    
+    // Change to SetFloat for float values
+    PlayerPrefs.SetFloat("PlayerDashSpeed", player.dashSpeed);
+    PlayerPrefs.SetFloat("PlayerCritChance", critChance.GetBaseValue());
+    PlayerPrefs.SetFloat("PlayerCritPower", critPower.GetBaseValue());
+    
+    PlayerPrefs.Save();
+}
+
     private void LoadPlayerStats()
     {
-        maxHealth.SetBaseValue(PlayerPrefs.GetInt("MaxHealth", maxHealth.GetBaseValue()));
-        currentHealth = PlayerPrefs.GetInt("CurrentHealth", currentHealth);
-        damage.SetBaseValue(PlayerPrefs.GetInt("Damage", damage.GetBaseValue()));
+        maxHealth.SetBaseValue(PlayerPrefs.GetInt("PlayerMaxHealth", (int)maxHealth.GetBaseValue()));
+        currentHealth = PlayerPrefs.GetInt("PlayerCurrentHealth", (int)currentHealth);
+        damage.SetBaseValue(PlayerPrefs.GetInt("PlayerDamage", (int)damage.GetBaseValue()));
+        armor.SetBaseValue(PlayerPrefs.GetInt("PlayerArmor", (int)armor.GetBaseValue()));
+        player.dashSpeed = PlayerPrefs.GetFloat("PlayerDashSpeed", player.dashSpeed);
+        critChance.SetBaseValue(PlayerPrefs.GetInt("PlayerCritChance", critChance.GetBaseValue()));
+        critPower.SetBaseValue(PlayerPrefs.GetInt("PlayerCritPower", critPower.GetBaseValue()));
     }
 }
-    

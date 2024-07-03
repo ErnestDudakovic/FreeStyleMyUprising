@@ -2670,7 +2670,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7273287004308223973, guid: 4b15447cd05f47f478da17868f43e7ee, type: 3}
       propertyPath: armor.baseValue
-      value: 0
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 7273287004308223973, guid: 4b15447cd05f47f478da17868f43e7ee, type: 3}
       propertyPath: damage.baseValue
@@ -3057,8 +3057,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelLoader: {fileID: 8409554466822441191}
   doorAudioSource: {fileID: 0}
-  shopSceneIndex: 3
-  otherSceneIndex: 4
+  shopSceneIndex: 11
+  otherSceneIndex: 11
 --- !u!82 &867465197
 AudioSource:
   m_ObjectHideFlags: 0
@@ -7656,7 +7656,7 @@ PrefabInstance:
       objectReference: {fileID: 8409554466822441191}
     - target: {fileID: 3368943797652899356, guid: 7bff6993eeb565e44a2d846de6f3e80c, type: 3}
       propertyPath: sceneIndexToLoad
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

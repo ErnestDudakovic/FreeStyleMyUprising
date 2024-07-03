@@ -78,21 +78,23 @@ public class CharacterStats : MonoBehaviour
             ApplyIgniteDamage();
     }
 
-    public virtual void DoDamage(CharacterStats _targetStats)
+   public virtual void DoDamage(CharacterStats _targetStats)
+{
+    if (TargetCanAvoidAttack(_targetStats))
+        return;
+
+    int totalDamage = damage.GetValue() + strength.GetValue();
+
+    if (CanCrit())
     {
-        if (TargetCanAvoidAttack(_targetStats))
-            return;
-
-        int totalDamage = damage.GetValue() + strength.GetValue();
-
-        if (CanCrit())
-        {
-            totalDamage = CalculateCriticalDamage(totalDamage);
-        }
-
-        totalDamage = CheckTargetArmor(_targetStats, totalDamage);
-        _targetStats.TakeDamage(totalDamage);
+        Debug.Log("Critical Chance Attack Triggered!"); // Log critical chance attack
+        totalDamage = CalculateCriticalDamage(totalDamage);
     }
+
+    totalDamage = CheckTargetArmor(_targetStats, totalDamage);
+    _targetStats.TakeDamage(totalDamage);
+}
+
 
     #region Magical damage and ailments
 
