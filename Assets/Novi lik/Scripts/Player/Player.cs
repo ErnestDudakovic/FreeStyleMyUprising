@@ -27,6 +27,8 @@ public class Player : Entity
 
     private IInteractable interactable; // Add this line
 
+    private GameOverManager gameOverManager;
+
     #region States
     public PlayerStateMachine stateMachine { get; private set; }
 
@@ -75,6 +77,7 @@ public class Player : Entity
         base.Start();
 
         skill = SkillManager.instance;
+        gameOverManager = FindAnyObjectByType<GameOverManager>();
 
         stateMachine.Initialize(idleState);
 
@@ -160,6 +163,11 @@ public class Player : Entity
         base.Die();
 
         stateMachine.ChangeState(deadState);
+
+        if(gameOverManager != null)
+        {
+            gameOverManager.ShowGameOverScreen();
+        }
     }
 
     private void InteractWithObject()

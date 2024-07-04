@@ -1,4 +1,4 @@
-/*using UnityEngine;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -15,6 +15,8 @@ public class GameOverManager : MonoBehaviour
     [Header("Pause")]
     public GameObject pauseScreen;
 
+   private Player player;
+
     void Start()
     {
         gameOverScreen.SetActive(false);
@@ -23,6 +25,8 @@ public class GameOverManager : MonoBehaviour
         restartButton.onClick.AddListener(RestartGame);
         mainMenuButton.onClick.AddListener(GoToMainMenu);
         quitButton.onClick.AddListener(QuitGame);
+
+        player = FindAnyObjectByType<Player>();
     }
 
     private void Update()
@@ -45,11 +49,8 @@ public class GameOverManager : MonoBehaviour
     void RestartGame()
     {
         Time.timeScale = 1f; // Resume the game
-        if(playerController != null) // Provjerite da li je referenca na igrača postavljena
-        {
-            playerController.ResetPlayer();
-        }
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+      
     }
 
     public void GoToMainMenu()
@@ -89,6 +90,6 @@ public class GameOverManager : MonoBehaviour
         
     }
     #endregion
-}*/
+}
 
 
