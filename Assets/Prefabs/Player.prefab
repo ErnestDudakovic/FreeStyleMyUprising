@@ -301,9 +301,10 @@ GameObject:
   - component: {fileID: 4746603868576952225}
   - component: {fileID: 1675091659984171206}
   - component: {fileID: 7273287004308223973}
+  - component: {fileID: 571678755919549164}
   m_Layer: 6
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -318,7 +319,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -22.99, y: -2.48, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 143012600139904118}
@@ -507,6 +508,22 @@ MonoBehaviour:
   ailmentsDuration: 4
   shockStrikePrefab: {fileID: 4158689088258206225, guid: 90919e9c918fc84499a3a88be8033ade, type: 3}
   currentHealth: 0
+--- !u!114 &571678755919549164
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4161135565026943580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8494c2878358c8a44bb2d4e9309ef981, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  climbSpeed: 5
+  whatIsLadder:
+    serializedVersion: 2
+    m_Bits: 256
 --- !u!1 &6115963367657870699
 GameObject:
   m_ObjectHideFlags: 0
