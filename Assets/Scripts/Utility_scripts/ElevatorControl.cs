@@ -1,48 +1,47 @@
 using UnityEngine;
-using System.Collections;
 
-public class ElevatorControl : MonoBehaviour
+public class SimpleElevator : MonoBehaviour
 {
+    public float moveSpeed = 2f; // Speed at which the elevator moves
     public float targetHeight = 5f; // How high the elevator goes
-    public float speed = 2f; // Speed of the elevator
-    private Vector3 startPosition;
-    private Vector3 endPosition;
-    private bool isActivated = false;
+    public bool isActivated = false; // Flag to check if the elevator is activated (player is on it)
+    
+    private Vector3 startPosition; // Initial position of the elevator
+    private Vector3 endPosition; // Target position when activated
 
-    void Start()
+    private void Start()
     {
-        startPosition = transform.position; // Remember start position
-        endPosition = new Vector3(startPosition.x, startPosition.y + targetHeight, startPosition.z); // Set the end position
+        startPosition = transform.position; // Remember starting position
+        endPosition = startPosition + Vector3.up * targetHeight; // Calculate end position
     }
 
-    void Update()
+    private void Update()
     {
-        // Only move if activated
         if (isActivated)
         {
             // Move towards the end position
-            transform.position = Vector3.MoveTowards(transform.position, endPosition, speed * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, endPosition, moveSpeed * Time.deltaTime);
         }
         else
         {
-            // Return to the start position if not activated
-            transform.position = Vector3.MoveTowards(transform.position, startPosition, speed * Time.deltaTime);
+            // Move back to the start position
+            transform.position = Vector3.MoveTowards(transform.position, startPosition, moveSpeed * Time.deltaTime);
         }
     }
 
-    void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (other.CompareTag("Player"))
         {
-            isActivated = true; // Activate the elevator when the player steps on the trigger
+            isActivated = true; // Activate the elevator when the player steps on it
         }
     }
 
-    void OnTriggerExit2D(Collider2D other)
+    private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (other.CompareTag("Player"))
         {
-            isActivated = false; // Deactivate when the player steps off
+            isActivated = false; // Deactivate the elevator when the player steps off
         }
     }
 }

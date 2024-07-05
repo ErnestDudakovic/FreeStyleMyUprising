@@ -2,43 +2,51 @@ using UnityEngine;
 
 public class LadderClimbing : MonoBehaviour
 {
-    [SerializeField] private float climbSpeed = 3f;
+    [SerializeField] private float climbSpeed = 5f;
     [SerializeField] private LayerMask whatIsLadder;
-    [SerializeField] private bool isClimbing;
+    private bool isClimbing;
+    private float originalGravityScale;
 
     private Rigidbody2D rb;
     private Animator animator;
-    private float verticalInput;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        animator = GetComponent<Animator>();
+        if (rb == null)
+        {
+            Debug.LogError("Rigidbody2D component not found on the player!");
+        }
+
+        // Store the original gravity scale
+        originalGravityScale = rb.gravityScale;
+
+        // Find the Animator component in the child GameObject
+        animator = GetComponentInChildren<Animator>();
+        if (animator == null)
+        {
+            Debug.LogError("Animator component not found on the player or its children!");
+        }
     }
 
     private void Update()
     {
-        verticalInput = Input.GetAxisRaw("Vertical");
-
         if (isClimbing)
         {
-            animator.SetBool("IsClimbing", true);  // Set climbing animation on
+            float verticalInput = Input.GetAxisRaw("Vertical");
+            rb.velocity = new Vector2(rb.velocity.x, verticalInput * climbSpeed);
+            animator.SetBool("IsClimbing", true);
 
-            if (verticalInput != 0)
-            {
-                rb.velocity = new Vector2(0, verticalInput * climbSpeed);
-            }
-            else
-            {
-                // Consider allowing some minor movements or zero out only vertical movement
-                rb.velocity = new Vector2(rb.velocity.x, 0);
-            }
+            // Stop horizontal movement while climbing and set gravity to 0
+            rb.gravityScale = 0;
         }
         else
         {
-            animator.SetBool("IsClimbing", false);  // Ensure climbing animation is off when not climbing
-        }
+            animator.SetBool("IsClimbing", false);
 
+            // Restore the original gravity scale
+            rb.gravityScale = originalGravityScale;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
