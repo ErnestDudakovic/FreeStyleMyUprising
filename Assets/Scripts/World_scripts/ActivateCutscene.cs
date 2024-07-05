@@ -20,6 +20,6 @@ public class ActivateCutscene : MonoBehaviour
 
     private void OnCutsceneEnd(PlayableDirector director)
     {
-        SceneManager.LoadScene("FinalLevel"); // Učitava scenu naziva "FinalLevel"
+        SceneManager.LoadScene("SampleScene"); // Učitava scenu naziva "FinalLevel"
     }
 }
