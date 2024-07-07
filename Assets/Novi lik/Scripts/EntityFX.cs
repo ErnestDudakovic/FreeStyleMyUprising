@@ -17,6 +17,7 @@ public class EntityFX : MonoBehaviour
     [SerializeField] private Color[] igniteColor;
     [SerializeField] private Color[] chillColor;
     [SerializeField] private Color[] shockColor;
+
     private void Start()
     {
         sr = GetComponentInChildren<SpriteRenderer>();
@@ -102,4 +103,5 @@ public class EntityFX : MonoBehaviour
             sr.color = shockColor[1];
     }
 
+    
 }

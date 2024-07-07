@@ -29,6 +29,8 @@ public class Entity : MonoBehaviour
     [SerializeField] protected float wallCheckDistance;
     [SerializeField] protected LayerMask whatIsGround;
 
+    public int knockbackDir { get; private set; }
+
     public int facingDir { get; private set; } = 1;
     protected bool facingRight = true;
 
@@ -65,7 +67,17 @@ public class Entity : MonoBehaviour
     }
 
     public virtual void DamageImpact() => StartCoroutine("HitKnockback");
- 
+
+    public virtual void SetupKnockbackDir(Transform _damageDirection)
+    {
+        if (_damageDirection.position.x > transform.position.x)
+            knockbackDir = -1;
+        else if (_damageDirection.position.x < transform.position.x)
+            knockbackDir = 1;
+
+
+    }
+
     protected virtual IEnumerator HitKnockback()
     {
         isKnocked = true;
@@ -123,9 +135,17 @@ public class Entity : MonoBehaviour
         else if (_x < 0 && facingRight)
             Flip();
     }
+
+    public virtual void SetupDefailtFacingDir(int _direction)
+    {
+        facingDir = _direction;
+
+        if (facingDir == -1)
+            facingRight = false;
+    }
     #endregion
 
-    
+
 
     public virtual void Die()
     {
