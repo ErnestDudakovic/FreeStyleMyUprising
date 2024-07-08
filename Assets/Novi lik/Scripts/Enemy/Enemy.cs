@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 
@@ -11,16 +10,17 @@ public class Enemy : Entity
 {
     [SerializeField] protected LayerMask whatIsPlayer;
 
+
     [Header("Stunned info")]
-    public float stunDuration;
-    public Vector2 stunDirection;
+    public float stunDuration = 1;
+    public Vector2 stunDirection = new Vector2(10, 12);
     protected bool canBeStunned;
     [SerializeField] protected GameObject counterImage;
 
     [Header("Move info")]
-    public float moveSpeed;
-    public float idleTime;
-    public float battleTime;
+    public float moveSpeed = 1.5f;
+    public float idleTime = 2;
+    public float battleTime = 7;
     private float defaultMoveSpeed;
 
     [Header("Attack info")]
@@ -32,7 +32,9 @@ public class Enemy : Entity
     [HideInInspector] public float lastTimeAttacked;
 
     public EnemyStateMachine stateMachine { get; private set; }
-    public string lastAnimBoolName {  get; private set; }
+    public EntityFX fx { get; private set; }
+    private Player player;
+    public string lastAnimBoolName { get; private set; }
     protected override void Awake()
     {
         base.Awake();
@@ -41,12 +43,20 @@ public class Enemy : Entity
         defaultMoveSpeed = moveSpeed;
     }
 
+    protected override void Start()
+    {
+        base.Start();
+
+        fx = GetComponent<EntityFX>();
+    }
+
     protected override void Update()
     {
         base.Update();
 
 
         stateMachine.currentState.Update();
+
 
     }
 
@@ -82,10 +92,10 @@ public class Enemy : Entity
         }
     }
 
-    protected virtual IEnumerator FreezeTimerFor(float _seconds)
+    public virtual void FreezeTimeFor(float _duration) => StartCoroutine(FreezeTimerCoroutine(_duration));
+
+    protected virtual IEnumerator FreezeTimerCoroutine(float _seconds)
     {
-
-
         FreezeTime(true);
 
         yield return new WaitForSeconds(_seconds);
@@ -119,7 +129,6 @@ public class Enemy : Entity
     }
 
     public virtual void AnimationFinishTrigger() => stateMachine.currentState.AnimationFinishTrigger();
-
     public virtual void AnimationSpecialAttackTrigger()
     {
 

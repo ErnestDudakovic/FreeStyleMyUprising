@@ -44,6 +44,7 @@ public class CharacterStats : MonoBehaviour
 
     public System.Action onHealthChanged;
     protected bool isDead;
+    public bool isInvincible { get; private set; }
 
     protected virtual void Start()
     {
@@ -278,6 +279,8 @@ public class CharacterStats : MonoBehaviour
     {
         isDead = true;
     }
+
+    public void MakeInvincible(bool _invincible) => isInvincible = _invincible;
 
     #region Stat calculations
 

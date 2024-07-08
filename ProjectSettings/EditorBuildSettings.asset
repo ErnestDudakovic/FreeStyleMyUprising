@@ -44,7 +44,4 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Novi lik/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
-  - enabled: 1
-    path: Assets/Scenes/FinalLevel.unity
-    guid: 71c087aef93294672be2b5ff0f8c633d
   m_configObjects: {}
