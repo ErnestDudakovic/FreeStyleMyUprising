@@ -42,6 +42,6 @@ EditorBuildSettings:
     path: Assets/Scenes/ShopScene.unity
     guid: 272293aaa3689cc42821f127c26c6f4d
   - enabled: 1
-    path: Assets/Novi lik/Scenes/SampleScene.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
+    path: Assets/Scenes/bossFight.unity
+    guid: 22f0e6b34b103de42a718354eaa4f8e6
   m_configObjects: {}
