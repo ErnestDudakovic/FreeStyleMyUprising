@@ -255,11 +255,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3507516204479278193, guid: 46f9e164321b3ba43ae290e9c42d9af6, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -29.478743
+      value: 10.817999
       objectReference: {fileID: 0}
     - target: {fileID: 3507516204479278193, guid: 46f9e164321b3ba43ae290e9c42d9af6, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 12.955999
+      value: 13.785999
       objectReference: {fileID: 0}
     - target: {fileID: 3507516204479278193, guid: 46f9e164321b3ba43ae290e9c42d9af6, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1097,17 +1097,25 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2518600932643856809, guid: d160b2cc72c42794fa009890379446c8, type: 3}
+      propertyPath: coinPrefab
+      value: 
+      objectReference: {fileID: 3650853395849493515, guid: 81baf28f0d710694fa8a81da9e73af64, type: 3}
     - target: {fileID: 3911136295415377740, guid: d160b2cc72c42794fa009890379446c8, type: 3}
       propertyPath: m_Name
       value: Enemy_Skeleton_Red
       objectReference: {fileID: 0}
+    - target: {fileID: 3911136295415377740, guid: d160b2cc72c42794fa009890379446c8, type: 3}
+      propertyPath: m_TagString
+      value: Enemy_Skeleton_Red
+      objectReference: {fileID: 0}
     - target: {fileID: 7177248848997678310, guid: d160b2cc72c42794fa009890379446c8, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -27.268084
+      value: -18.18
       objectReference: {fileID: 0}
     - target: {fileID: 7177248848997678310, guid: d160b2cc72c42794fa009890379446c8, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 10.0811825
+      value: 9.66
       objectReference: {fileID: 0}
     - target: {fileID: 7177248848997678310, guid: d160b2cc72c42794fa009890379446c8, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1162,17 +1170,25 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2518600932643856809, guid: 279e428c018270b4c9c315839ca3cb4b, type: 3}
+      propertyPath: coinPrefab
+      value: 
+      objectReference: {fileID: 3650853395849493515, guid: 81baf28f0d710694fa8a81da9e73af64, type: 3}
     - target: {fileID: 3911136295415377740, guid: 279e428c018270b4c9c315839ca3cb4b, type: 3}
       propertyPath: m_Name
       value: Enemy_Skeleton
       objectReference: {fileID: 0}
+    - target: {fileID: 3911136295415377740, guid: 279e428c018270b4c9c315839ca3cb4b, type: 3}
+      propertyPath: m_TagString
+      value: Enemy_Skeleton
+      objectReference: {fileID: 0}
     - target: {fileID: 7177248848997678310, guid: 279e428c018270b4c9c315839ca3cb4b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 14.288482
+      value: 12.6
       objectReference: {fileID: 0}
     - target: {fileID: 7177248848997678310, guid: 279e428c018270b4c9c315839ca3cb4b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.5512929
+      value: 9.87
       objectReference: {fileID: 0}
     - target: {fileID: 7177248848997678310, guid: 279e428c018270b4c9c315839ca3cb4b, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1343,11 +1359,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8106312135025570869, guid: 4b15447cd05f47f478da17868f43e7ee, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -35.37
+      value: 4.93
       objectReference: {fileID: 0}
     - target: {fileID: 8106312135025570869, guid: 4b15447cd05f47f478da17868f43e7ee, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 8.7
+      value: 9.53
       objectReference: {fileID: 0}
     - target: {fileID: 8106312135025570869, guid: 4b15447cd05f47f478da17868f43e7ee, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2522,7 +2538,7 @@ Transform:
   m_GameObject: {fileID: 1568846839}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -29.478743, y: 12.955999, z: -10}
+  m_LocalPosition: {x: 10.817999, y: 13.785999, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3181,17 +3197,25 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2518600932643856809, guid: b411f97527e7dbf489dcfd543203a313, type: 3}
+      propertyPath: coinPrefab
+      value: 
+      objectReference: {fileID: 3650853395849493515, guid: 81baf28f0d710694fa8a81da9e73af64, type: 3}
     - target: {fileID: 3911136295415377740, guid: b411f97527e7dbf489dcfd543203a313, type: 3}
       propertyPath: m_Name
       value: Enemy_Skeleton_Blue
       objectReference: {fileID: 0}
+    - target: {fileID: 3911136295415377740, guid: b411f97527e7dbf489dcfd543203a313, type: 3}
+      propertyPath: m_TagString
+      value: Enemy_Skeleton_Blue
+      objectReference: {fileID: 0}
     - target: {fileID: 7177248848997678310, guid: b411f97527e7dbf489dcfd543203a313, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -14.819235
+      value: 10.4
       objectReference: {fileID: 0}
     - target: {fileID: 7177248848997678310, guid: b411f97527e7dbf489dcfd543203a313, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 9.892533
+      value: 0.69
       objectReference: {fileID: 0}
     - target: {fileID: 7177248848997678310, guid: b411f97527e7dbf489dcfd543203a313, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3919,7 +3943,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3405298141130271410, guid: 6e9e3749e69ed5b43867cc8495eb38f7, type: 3}
       propertyPath: m_TagString
-      value: Untagged
+      value: Enemy_Skeleton_Red
       objectReference: {fileID: 0}
     - target: {fileID: 4243783961086957739, guid: 6e9e3749e69ed5b43867cc8495eb38f7, type: 3}
       propertyPath: m_Tiles.Array.size

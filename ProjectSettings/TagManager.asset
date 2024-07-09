@@ -7,6 +7,11 @@ TagManager:
   - Ground
   - Ladder
   - Interactable
+  - Event
+  - Coin
+  - Enemy_Skeleton
+  - Enemy_Skeleton_Red
+  - Enemy_Skeleton_Blue
   layers:
   - Default
   - TransparentFX

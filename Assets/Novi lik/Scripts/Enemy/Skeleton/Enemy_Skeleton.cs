@@ -15,6 +15,9 @@ public class Enemy_Skeleton : Enemy
     public SkeletonDeadState deadState { get; private set; }
     #endregion
 
+    // Reference to the coin prefab
+    public GameObject coinPrefab;
+
     protected override void Awake()
     {
         base.Awake();
@@ -41,7 +44,6 @@ public class Enemy_Skeleton : Enemy
         {
             stateMachine.ChangeState(stunnedState);
         }
-
     }
 
     public override bool CanBeStunned()
@@ -60,5 +62,34 @@ public class Enemy_Skeleton : Enemy
         base.Die();
         stateMachine.ChangeState(deadState);
 
+        // Determine how many coins to drop based on enemy tag
+        if (coinPrefab != null)
+        {
+            if (CompareTag("Enemy_Skeleton"))
+            {
+                DropCoins(1, 0);
+            }
+            else if (CompareTag("Enemy_Skeleton_Red"))
+            {
+                DropCoins(3, 0.5f);
+            }
+            else if (CompareTag("Enemy_Skeleton_Blue"))
+            {
+                DropCoins(5, 0.5f);
+            }
+        }
+        else
+        {
+            Debug.LogWarning("Coin prefab is not assigned in the inspector.");
+        }
+    }
+
+    private void DropCoins(int numberOfCoins, float spread)
+    {
+        for (int i = 0; i < numberOfCoins; i++)
+        {
+            Vector3 coinPosition = transform.position + new Vector3(i * spread, 0, 0);
+            Instantiate(coinPrefab, coinPosition, Quaternion.identity);
+        }
     }
 }
