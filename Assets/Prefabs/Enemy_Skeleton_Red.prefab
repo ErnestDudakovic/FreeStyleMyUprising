@@ -206,7 +206,7 @@ GameObject:
   - component: {fileID: 4302992197279194074}
   m_Layer: 7
   m_Name: Enemy_Skeleton_Red
-  m_TagString: Untagged
+  m_TagString: Enemy_Skeleton_Red
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -264,9 +264,13 @@ MonoBehaviour:
   moveSpeed: 3.5
   idleTime: 2
   battleTime: 7
+  agroDistance: 2
   attackDistance: 1.5
   attackCooldown: 0.4
+  minAttackCooldown: 1
+  maxAttackCooldown: 2
   lastTimeAttacked: 0
+  coinPrefab: {fileID: 3650853395849493515, guid: 81baf28f0d710694fa8a81da9e73af64, type: 3}
 --- !u!50 &8590194763558892499
 Rigidbody2D:
   serializedVersion: 4

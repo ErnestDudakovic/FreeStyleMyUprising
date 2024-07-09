@@ -105,7 +105,7 @@ public class CharacterStats : MonoBehaviour
         int _iceDamage = iceDamage.GetValue();
         int _lightingDamage = lightingDamage.GetValue();
 
-        int totalMagicalDamage = _fireDamage + _iceDamage + _lightingDamage + intelligence.GetValue();
+        int totalMagicalDamage =  _iceDamage + + intelligence.GetValue();
 
         totalMagicalDamage = CheckTargetResistance(_targetStats, totalMagicalDamage);
         _targetStats.TakeDamage(totalMagicalDamage);

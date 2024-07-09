@@ -28,7 +28,7 @@ public class Enemy_DeathBringer : Enemy
     [SerializeField] private BoxCollider2D arena;
     [SerializeField] private Vector2 surroundingCheckSize;
     public float chanceToTeleport;
-    public float defaultChanceToTeleport = 25;
+    public float defaultChanceToTeleport = 0;
 
     // Reference to the coin prefab
     public GameObject coinPrefab;
@@ -65,25 +65,8 @@ public class Enemy_DeathBringer : Enemy
         base.Die();
         stateMachine.ChangeState(deadState);
 
-        // Drop 10 coins when DeathBringer dies
-        if (coinPrefab != null)
-        {
-            DropCoins(10, 0.5f);
-        }
-        else
-        {
-            Debug.LogWarning("Coin prefab is not assigned in the inspector.");
-        }
     }
 
-    private void DropCoins(int numberOfCoins, float spread)
-    {
-        for (int i = 0; i < numberOfCoins; i++)
-        {
-            Vector3 coinPosition = transform.position + new Vector3(i * spread, 0, 0);
-            Instantiate(coinPrefab, coinPosition, Quaternion.identity);
-        }
-    }
 
     public void CastSpell()
     {
