@@ -44,7 +44,7 @@ public class PlayerStats : CharacterStats
 
     public void IncreaseDamageByThirty()
     {
-        damage.SetBaseValue(damage.GetBaseValue() + 30);
+        damage.SetBaseValue(damage.GetBaseValue() + 5);
 
         // Save the updated stats to PlayerPrefs
         SavePlayerStats();
@@ -52,7 +52,7 @@ public class PlayerStats : CharacterStats
 
     public void DecreaseDamageByThirty()
     {
-        damage.SetBaseValue(damage.GetBaseValue() - 30);
+        damage.SetBaseValue(damage.GetBaseValue() - 5);
 
         // Save the updated stats to PlayerPrefs
         SavePlayerStats();
@@ -60,13 +60,13 @@ public class PlayerStats : CharacterStats
 
     public void IncreaseArmorByFive()
     {
-        armor.SetBaseValue(armor.GetBaseValue() + 1);
+        armor.SetBaseValue(armor.GetBaseValue() + 3);
         SavePlayerStats();
     }
 
     public void DecreaseArmorByFive()
     {
-        armor.SetBaseValue(armor.GetBaseValue() - 1);
+        armor.SetBaseValue(armor.GetBaseValue() - 3);
         SavePlayerStats();
     }
 
@@ -132,5 +132,37 @@ public class PlayerStats : CharacterStats
         player.dashSpeed = PlayerPrefs.GetFloat("PlayerDashSpeed", player.dashSpeed);
         critChance.SetBaseValue(PlayerPrefs.GetInt("PlayerCritChance", critChance.GetBaseValue()));
         critPower.SetBaseValue(PlayerPrefs.GetInt("PlayerCritPower", critPower.GetBaseValue()));
+    }
+
+
+        public int GetCurrentHealth()
+    {
+        return (int)currentHealth;
+    }
+
+    public int GetCurrentDamage()
+    {
+        return (int)damage.GetBaseValue();
+    }
+
+    public int GetCurrentArmor()
+    {
+        return (int)armor.GetBaseValue();
+    }
+
+    public float GetCurrentDashSpeed()
+    {
+        // Assuming player.dashSpeed is a float field
+        return player.dashSpeed;
+    }
+
+    public int GetCurrentCritChance()
+    {
+        return (int)critChance.GetBaseValue();
+    }
+
+    public int GetCurrentCritPower()
+    {
+        return (int)critPower.GetBaseValue();
     }
 }

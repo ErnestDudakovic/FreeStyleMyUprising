@@ -35,10 +35,10 @@ public class Sword_Skill : Skill
     [SerializeField] private float swordGravity;
     [SerializeField] private float freezeTimeDuration;
     [SerializeField] private float returnSpeed;
-
-
+    [SerializeField] private float cooldownDuration = 15f; // Cooldown duration in seconds
 
     private Vector2 finalDir;
+    public float cooldownTimer = 0f; // Timer to track cooldown
 
     [Header("Aim dots")]
     [SerializeField] private int numberOfDots;
@@ -51,10 +51,9 @@ public class Sword_Skill : Skill
     protected override void Start()
     {
         base.Start();
-
         GenereateDots();
-
         SetupGraivty();
+        cooldownTimer = 0f; // Initialize cooldown timer
     }
 
     private void SetupGraivty()
@@ -69,40 +68,57 @@ public class Sword_Skill : Skill
 
     protected override void Update()
     {
-        if (Input.GetKeyUp(KeyCode.Mouse1))
-            finalDir = new Vector2(AimDirection().normalized.x * launchForce.x, AimDirection().normalized.y * launchForce.y);
-
-
-        if (Input.GetKey(KeyCode.Mouse1))
+        // Update cooldown timer
+        if (cooldownTimer > 0f)
         {
-            for (int i = 0; i < dots.Length; i++)
+            cooldownTimer -= Time.deltaTime;
+        }
+
+        // Handle right-click input only if the cooldown timer is not active
+        if (cooldownTimer <= 0f)
+        {
+            if (Input.GetKeyUp(KeyCode.Mouse1))
+                finalDir = new Vector2(AimDirection().normalized.x * launchForce.x, AimDirection().normalized.y * launchForce.y);
+
+            if (Input.GetKey(KeyCode.Mouse1))
             {
-                dots[i].transform.position = DotsPosition(i * spaceBeetwenDots);
+                for (int i = 0; i < dots.Length; i++)
+                {
+                    dots[i].transform.position = DotsPosition(i * spaceBeetwenDots);
+                }
             }
         }
     }
 
     public void CreateSword()
     {
-        GameObject newSword = Instantiate(swordPrefab, player.transform.position, transform.rotation);
-        Sword_Skill_Controller newSwordScript = newSword.GetComponent<Sword_Skill_Controller>();
+        // Check if the cooldown has expired
+        if (cooldownTimer <= 0f)
+        {
+            GameObject newSword = Instantiate(swordPrefab, player.transform.position, transform.rotation);
+            Sword_Skill_Controller newSwordScript = newSword.GetComponent<Sword_Skill_Controller>();
 
+            if (swordType == SwordType.Bounce)
+                newSwordScript.SetupBounce(true, bounceAmount, bounceSpeed);
+            else if (swordType == SwordType.Pierce)
+                newSwordScript.SetupPierce(pierceAmount);
+            else if (swordType == SwordType.Spin)
+                newSwordScript.SetupSpin(true, maxTravelDistance, spinDuration, hitCooldown);
 
-        if (swordType == SwordType.Bounce)
-            newSwordScript.SetupBounce(true, bounceAmount,bounceSpeed);
-        else if (swordType == SwordType.Pierce)
-            newSwordScript.SetupPierce(pierceAmount);
-        else if (swordType == SwordType.Spin)
-            newSwordScript.SetupSpin(true, maxTravelDistance, spinDuration,hitCooldown);
+            newSwordScript.SetupSword(finalDir, swordGravity, player, freezeTimeDuration, returnSpeed);
+            AudioManager.instance.PlaySFX(27, null);
+            player.AssignNewSword(newSword);
 
+            DotsActive(false);
 
-        newSwordScript.SetupSword(finalDir, swordGravity, player, freezeTimeDuration, returnSpeed);
-        AudioManager.instance.PlaySFX(27, null);
-        player.AssignNewSword(newSword);
-
-        DotsActive(false);
+            // Reset the cooldown timer
+            cooldownTimer = cooldownDuration;
+        }
+        else
+        {
+            Debug.Log("Ability is on cooldown. Remaining time: " + cooldownTimer + " seconds.");
+        }
     }
-
 
     #region Aim region
     public Vector2 AimDirection()

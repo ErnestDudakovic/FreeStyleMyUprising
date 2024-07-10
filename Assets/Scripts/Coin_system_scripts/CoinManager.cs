@@ -9,6 +9,8 @@ public class CoinManager : MonoBehaviour
     public int coinCount; // Counter for coin, can be referenced anywhere
     public Text coinText; // UI text for the coin
 
+    private int initialCoinCount; // Store the initial coin count at the start of the level
+
     void Awake()
     {
         // Singleton pattern to ensure only one instance exists
@@ -27,6 +29,7 @@ public class CoinManager : MonoBehaviour
 
     void Start()
     {
+        initialCoinCount = coinCount; // Store the initial coin count
         UpdateCoinText();
     }
 
@@ -65,12 +68,18 @@ public class CoinManager : MonoBehaviour
         }
     }
 
+    // Reset coin count to the initial value
+    public void ResetCoinCount()
+    {
+        coinCount = initialCoinCount;
+        UpdateCoinText();
+        SaveCoinCount(); // Save the reset coin count
+    }
+
     // Example method to add coins (can be called from other scripts)
     public void AddCoins(int amount)
     {
         coinCount += amount;
         UpdateCoinCount(coinCount);
     }
-
-
 }

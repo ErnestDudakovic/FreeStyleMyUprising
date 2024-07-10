@@ -25,7 +25,8 @@ public class PlayerGroundedState : PlayerState
         if (Input.GetKeyDown(KeyCode.R))
             stateMachine.ChangeState(player.blackHole);
 
-        if (Input.GetKeyDown(KeyCode.Mouse1) && HasNoSword())
+        // Check cooldown timer before allowing aimSword state change
+        if (Input.GetKeyDown(KeyCode.Mouse1) && HasNoSword() && player.skill.sword.cooldownTimer <= 0f)
             stateMachine.ChangeState(player.aimSowrd);
 
         if (Input.GetKeyDown(KeyCode.Q))

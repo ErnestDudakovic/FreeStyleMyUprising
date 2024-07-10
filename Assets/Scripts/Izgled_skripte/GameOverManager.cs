@@ -59,6 +59,7 @@ public class GameOverManager : MonoBehaviour
 
     void RestartGame()
     {
+
         Time.timeScale = 1f; // Resume the game
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
       

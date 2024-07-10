@@ -162,11 +162,12 @@ public class Player : Entity
     public override void Die()
     {
         base.Die();
-
+        
         stateMachine.ChangeState(deadState);
 
         if(gameOverManager != null)
         {
+            CoinManager.instance.ResetCoinCount();
             
             gameOverManager.ShowGameOverScreen();
         }

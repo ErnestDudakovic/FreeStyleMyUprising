@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro; // Add this line to include TextMeshProUGUI
 
 public class ShopManagerScript : MonoBehaviour
 {
@@ -13,6 +14,8 @@ public class ShopManagerScript : MonoBehaviour
     public bool purchaseLocked = false;
 
     private CoinManager coinManager;
+    public GameObject shopTextPopupObject; // Assign in inspector
+    public TextMeshProUGUI shopTextPopupText; // Assign in inspector
 
     void Start()
     {
@@ -43,12 +46,12 @@ public class ShopManagerScript : MonoBehaviour
         shopItems[1, 5] = 5; // Critical chance upgrade item ID
         shopItems[1, 6] = 6; // Critical power upgrade item ID
 
-        shopItems[2, 1] = 1;
-        shopItems[2, 2] = 2;
-        shopItems[2, 3] = 3;
-        shopItems[2, 4] = 10;
-        shopItems[2, 5] = 15; // Price for critical chance upgrade
-        shopItems[2, 6] = 20; // Price for critical power upgrade
+        shopItems[2, 1] = 5;
+        shopItems[2, 2] = 7;
+        shopItems[2, 3] = 5;
+        shopItems[2, 4] = 15;
+        shopItems[2, 5] = 25; // Price for critical chance upgrade
+        shopItems[2, 6] = 30; // Price for critical power upgrade
 
         shopItems[3, 1] = 0;
         shopItems[3, 2] = 0;
@@ -69,6 +72,7 @@ public class ShopManagerScript : MonoBehaviour
         {
             if (coins >= shopItems[2, itemID])
             {
+                 int previousQuantity = shopItems[3, itemID]; // Get previous quantity
                 coins -= shopItems[2, itemID];
                 shopItems[3, itemID]++;
                 UpdateCoinsText();
@@ -108,6 +112,8 @@ public class ShopManagerScript : MonoBehaviour
                 }
 
                 SavePurchases();
+                DisplayShopTextPopup("Previous quantity: " + previousQuantity.ToString() +
+                                      "\nNew: " + shopItems[3, itemID].ToString(), itemID);
             }
             else
             {
@@ -164,6 +170,9 @@ public class ShopManagerScript : MonoBehaviour
             }
 
             SavePurchases();
+            // Display popup message
+            DisplayShopTextPopup("Previous quantity: " + (shopItems[3, itemID] + 1).ToString() +
+                                      "\nNew quantity: " + shopItems[3, itemID].ToString(), itemID);
         }
         else
         {
@@ -225,6 +234,67 @@ public class ShopManagerScript : MonoBehaviour
             {
                 shopItems[3, i] = PlayerPrefs.GetInt("Item" + i);
             }
+        }
+    }
+
+    void DisplayShopTextPopup(string message, int itemID)
+    {
+        if (shopTextPopupObject != null && shopTextPopupText != null)
+        {
+            // Append current player stats to the message
+            message += "\n\nCurrent Stats:";
+            PlayerStats playerStats = FindObjectOfType<PlayerStats>();
+            if (playerStats != null)
+            {
+                if (itemID == 1)
+                {
+                    message += "\nHealth: " + playerStats.GetCurrentHealth();
+                }
+                else if (itemID == 2)
+                {
+                    message += "\nDamage: " + playerStats.GetCurrentDamage();
+                }
+                else if (itemID == 3)
+                {
+                    message += "\nArmor: " + playerStats.GetCurrentArmor();
+                }
+                else if (itemID == 4)
+                {
+                    message += "\nDash Speed: " + playerStats.GetCurrentDashSpeed();
+                }
+                else if (itemID == 5)
+                {
+                    message += "\nCritical Chance: " + playerStats.GetCurrentCritChance();
+                }
+                else if (itemID == 6)
+                {
+                    message += "\nCritical Power: " + playerStats.GetCurrentCritPower();
+                }
+            }
+            else
+            {
+                Debug.LogError("PlayerStats component not found on the player GameObject!");
+            }
+
+            // Set the text of the popup and activate it
+            shopTextPopupText.text = message;
+            shopTextPopupObject.SetActive(true);
+
+            // Start coroutine to hide the popup after some time
+            StartCoroutine(HideShopTextPopup());
+        }
+        else
+        {
+            Debug.LogWarning("Shop text popup object or text component not assigned in the inspector!");
+        }
+    }
+
+    IEnumerator HideShopTextPopup()
+    {
+        yield return new WaitForSeconds(2f); // Adjust delay as needed
+        if (shopTextPopupObject != null)
+        {
+            shopTextPopupObject.SetActive(false);
         }
     }
 }

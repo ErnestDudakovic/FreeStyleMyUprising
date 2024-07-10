@@ -29,8 +29,12 @@ public class PlayerAimSwordState : PlayerState
 
         player.SetZeroVelocity();
 
-        if (Input.GetKeyUp(KeyCode.Mouse1))
-            stateMachine.ChangeState(player.idleState);
+        // Check if the cooldown timer is active before handling right-click input
+        if (player.skill.sword.cooldownTimer <= 0f)
+        {
+            if (Input.GetKeyUp(KeyCode.Mouse1))
+                stateMachine.ChangeState(player.idleState);
+        }
 
         Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 

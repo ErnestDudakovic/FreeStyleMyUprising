@@ -63,7 +63,8 @@ public class Enemy_Skeleton : Enemy
         stateMachine.ChangeState(deadState);
 
         // Determine how many coins to drop based on enemy tag
-        if (coinPrefab != null)
+       if (coinPrefab != null && Random.value <= 0.15f)
+
         {
             if (CompareTag("Enemy_Skeleton"))
             {

@@ -877,7 +877,7 @@ Transform:
   m_LocalScale: {x: 0.7, y: 0.7, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 596508075}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &118399673
 Animator:
@@ -1486,13 +1486,7 @@ Transform:
   m_LocalPosition: {x: 8.85, y: -0.35, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1151226574}
-  - {fileID: 906922045}
-  - {fileID: 1600211558}
-  - {fileID: 1555645064}
-  - {fileID: 1678958111}
-  - {fileID: 92114795}
+  m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &169036500
@@ -1509,11 +1503,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   knockbackDirection: {x: 7, y: 12}
   knockbackDuration: 0.07
-  attackCheck: {fileID: 1555645064}
+  attackCheck: {fileID: 0}
   attackCheckRadius: 2
-  groundCheck: {fileID: 906922045}
+  groundCheck: {fileID: 0}
   groundCheckDistance: 1
-  wallCheck: {fileID: 1600211558}
+  wallCheck: {fileID: 0}
   wallCheckDistance: 0.8
   whatIsGround:
     serializedVersion: 2
@@ -1523,7 +1517,7 @@ MonoBehaviour:
     m_Bits: 64
   stunDuration: 1
   stunDirection: {x: 10, y: 12}
-  counterImage: {fileID: 1678958110}
+  counterImage: {fileID: 0}
   moveSpeed: 3
   idleTime: 0.7
   battleTime: 7
@@ -1540,10 +1534,11 @@ MonoBehaviour:
   lastTimeCast: 0
   spellStateCooldown: 10
   spellOffset: {x: 3, y: 3}
-  arena: {fileID: 621966108}
+  arena: {fileID: 0}
   surroundingCheckSize: {x: 3, y: 5}
   chanceToTeleport: 25
   defaultChanceToTeleport: 25
+  coinPrefab: {fileID: 0}
 --- !u!1 &263906310
 GameObject:
   m_ObjectHideFlags: 0
@@ -2619,7 +2614,7 @@ Transform:
   m_GameObject: {fileID: 611116832}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -59.703667, y: -1.9040003, z: -10}
+  m_LocalPosition: {x: -16.792, y: -11.174001, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2673,11 +2668,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8106312135025570869, guid: 4b15447cd05f47f478da17868f43e7ee, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -67.95
+      value: -22.68
       objectReference: {fileID: 0}
     - target: {fileID: 8106312135025570869, guid: 4b15447cd05f47f478da17868f43e7ee, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -6.16
+      value: -15.43
       objectReference: {fileID: 0}
     - target: {fileID: 8106312135025570869, guid: 4b15447cd05f47f478da17868f43e7ee, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2774,6 +2769,11 @@ Transform:
 --- !u!4 &687274541 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5340936569315467001, guid: c3f75edc6fb71a347835d0b2ef0e9d74, type: 3}
+  m_PrefabInstance: {fileID: 1470832933}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &698221811 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 4237935419593784926, guid: c3f75edc6fb71a347835d0b2ef0e9d74, type: 3}
   m_PrefabInstance: {fileID: 1470832933}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &714512412
@@ -3107,7 +3107,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelLoader: {fileID: 8409554466822441191}
-  doorAudioSource: {fileID: 0}
+  doorAudioSource: {fileID: 698221811}
   shopSceneIndex: 11
   otherSceneIndex: 11
 --- !u!82 &867465197
@@ -6358,7 +6358,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1957368755936046619, guid: e77bcd022717183488139be6d0a3de44, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5693674782703768306, guid: e77bcd022717183488139be6d0a3de44, type: 3}
       propertyPath: m_LocalPosition.x
@@ -15512,11 +15512,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3507516204479278193, guid: 46f9e164321b3ba43ae290e9c42d9af6, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -59.703667
+      value: -16.792
       objectReference: {fileID: 0}
     - target: {fileID: 3507516204479278193, guid: 46f9e164321b3ba43ae290e9c42d9af6, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.9040003
+      value: -11.174001
       objectReference: {fileID: 0}
     - target: {fileID: 3507516204479278193, guid: 46f9e164321b3ba43ae290e9c42d9af6, type: 3}
       propertyPath: m_LocalPosition.z
@@ -15593,3 +15593,6 @@ SceneRoots:
   - {fileID: 457417765}
   - {fileID: 38318480}
   - {fileID: 714512413}
+  - {fileID: 118399672}
+  - {fileID: 131210948}
+  - {fileID: 169036499}
