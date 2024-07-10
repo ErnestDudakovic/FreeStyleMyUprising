@@ -13,12 +13,16 @@ public class DeathBringerAttackState : EnemyState
     {
         base.Enter();
 
-        enemy.chanceToTeleport += 5;
+        AudioManager.instance.PlaySFX(20, null);
+
+        enemy.chanceToTeleport += 0;
     }
 
     public override void Exit()
     {
         base.Exit();
+
+        AudioManager.instance.StopSFX(20);
 
         enemy.lastTimeAttacked = Time.time;
     }
