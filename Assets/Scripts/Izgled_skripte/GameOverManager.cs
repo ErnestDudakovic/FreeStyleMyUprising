@@ -11,6 +11,11 @@ public class GameOverManager : MonoBehaviour
     public Button mainMenuButton;
     public Button quitButton;
 
+    [Header("Win Screen")]
+    public GameObject winScreen;
+    public Button winMainMenuButton;
+    public Button winQuitButton;
+
 
     [Header("Pause")]
     public GameObject pauseScreen;
@@ -21,10 +26,16 @@ public class GameOverManager : MonoBehaviour
     {
         gameOverScreen.SetActive(false);
         pauseScreen.SetActive(false);
+        winScreen.SetActive(false);
 
         restartButton.onClick.AddListener(RestartGame);
         mainMenuButton.onClick.AddListener(GoToMainMenu);
         quitButton.onClick.AddListener(QuitGame);
+
+        winMainMenuButton.onClick.AddListener(GoToMainMenu);
+        winQuitButton.onClick.AddListener(QuitGame);
+
+        
 
         player = FindAnyObjectByType<Player>();
     }
@@ -66,6 +77,14 @@ public class GameOverManager : MonoBehaviour
 #if UNITY_EDITOR
     UnityEditor.EditorApplication.isPlaying = false;
 #endif
+    }
+    public void ShowWinScreen()
+    {
+        if(winScreen != null)
+        {
+            winScreen.SetActive(true);
+            Time.timeScale = 0.30f;
+        }
     }
 #endregion
 

@@ -33,6 +33,8 @@ public class Enemy_DeathBringer : Enemy
     // Reference to the coin prefab
     public GameObject coinPrefab;
 
+     
+
     protected override void Awake()
     {
         base.Awake();
@@ -64,6 +66,12 @@ public class Enemy_DeathBringer : Enemy
     {
         base.Die();
         stateMachine.ChangeState(deadState);
+
+        GameOverManager gameOverManager = FindObjectOfType<GameOverManager>();
+        if(gameOverManager != null)
+        {
+            gameOverManager.ShowWinScreen();
+        }
 
     }
 
