@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerJumpState : PlayerState
 {
+
     public PlayerJumpState(Player _player, PlayerStateMachine _stateMachine, string _animBoolName) : base(_player, _stateMachine, _animBoolName)
     {
     }
@@ -12,6 +13,9 @@ public class PlayerJumpState : PlayerState
     {
         base.Enter();
 
+
+
+        AudioManager.instance.PlaySFX(17, null);
         rb.velocity = new Vector2(rb.velocity.x, player.jumpForce);
     }
 

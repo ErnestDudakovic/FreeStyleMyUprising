@@ -14,12 +14,15 @@ public class SkeletonAttackState : EnemyState
     public override void Enter()
     {
         base.Enter();
+
+        AudioManager.instance.PlaySFX(23, null);
     }
 
     public override void Exit()
     {
         base.Exit();
 
+        AudioManager.instance.StopSFX(14);
         enemy.lastTimeAttacked = Time.time;
     }
 

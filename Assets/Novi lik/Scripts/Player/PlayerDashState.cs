@@ -12,6 +12,8 @@ public class PlayerDashState : PlayerState
     {
         base.Enter();
 
+        AudioManager.instance.PlaySFX(14, null);
+
         player.skill.clone.CreateCloneOnDashStart();
 
         stateTimer = player.dashDuration;

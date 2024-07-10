@@ -96,6 +96,7 @@ public class Player : Entity
 
         if (Input.GetKeyDown(KeyCode.F))
             skill.crystal.CanUseSkill();
+        
 
         // Interaction logic
         if (Input.GetKeyDown(KeyCode.E))
@@ -166,6 +167,7 @@ public class Player : Entity
 
         if(gameOverManager != null)
         {
+            
             gameOverManager.ShowGameOverScreen();
         }
     }
@@ -192,6 +194,7 @@ public class Player : Entity
         if (collision.gameObject.CompareTag("Coin"))
         {
             Debug.Log("Coin picked up!"); // Log that a coin is picked up
+            AudioManager.instance.PlaySFX(36, null);
             Destroy(collision.gameObject);
 
             // Log current coin count before updating

@@ -97,7 +97,7 @@ public class Sword_Skill : Skill
 
 
         newSwordScript.SetupSword(finalDir, swordGravity, player, freezeTimeDuration, returnSpeed);
-
+        AudioManager.instance.PlaySFX(27, null);
         player.AssignNewSword(newSword);
 
         DotsActive(false);
