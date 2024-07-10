@@ -72,7 +72,7 @@ public class ShopManagerScript : MonoBehaviour
         {
             if (coins >= shopItems[2, itemID])
             {
-                 int previousQuantity = shopItems[3, itemID]; // Get previous quantity
+                int previousQuantity = shopItems[3, itemID]; // Get previous quantity
                 coins -= shopItems[2, itemID];
                 shopItems[3, itemID]++;
                 UpdateCoinsText();
@@ -212,7 +212,7 @@ public class ShopManagerScript : MonoBehaviour
 
     public void ReturnToHUB()
     {
-        SceneManager.LoadScene(7);
+        SceneManager.LoadScene(1);
     }
 
     // Save purchases to PlayerPrefs
