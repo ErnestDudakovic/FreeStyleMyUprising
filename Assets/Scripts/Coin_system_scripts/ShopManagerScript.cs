@@ -212,7 +212,7 @@ public class ShopManagerScript : MonoBehaviour
 
     public void ReturnToHUB()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(10);
     }
 
     // Save purchases to PlayerPrefs
