@@ -12,8 +12,8 @@ public class Enemy_DeathBringer : Enemy
     public DeathBringerDeadState deadState { get; private set; }
     public DeathBringerSpellCastState spellCastState { get; private set; }
     public DeathBringerTeleportState teleportState { get; private set; }
-    #endregion
 
+    #endregion
     public bool bossFightBegun;
 
     [Header("Spell cast details")]
@@ -54,6 +54,7 @@ public class Enemy_DeathBringer : Enemy
     protected override void Start()
     {
         base.Start();
+
         stateMachine.Initialize(idleState);
     }
 
@@ -61,7 +62,6 @@ public class Enemy_DeathBringer : Enemy
     {
         base.Update();
     }
-
     public override void Die()
     {
         base.Die();
@@ -79,6 +79,7 @@ public class Enemy_DeathBringer : Enemy
     public void CastSpell()
     {
         Player player = PlayerManager.instance.player;
+
 
         float xOffset = 0;
 
@@ -106,6 +107,7 @@ public class Enemy_DeathBringer : Enemy
         }
     }
 
+
     private RaycastHit2D GroundBelow() => Physics2D.Raycast(transform.position, Vector2.down, 100, whatIsGround);
     private bool SomethingIsAround() => Physics2D.BoxCast(transform.position, surroundingCheckSize, 0, Vector2.zero, 0, whatIsGround);
 
@@ -117,6 +119,7 @@ public class Enemy_DeathBringer : Enemy
         Gizmos.DrawWireCube(transform.position, surroundingCheckSize);
     }
 
+
     public bool CanTeleport()
     {
         if (Random.Range(0, 100) <= chanceToTeleport)
@@ -124,6 +127,7 @@ public class Enemy_DeathBringer : Enemy
             chanceToTeleport = defaultChanceToTeleport;
             return true;
         }
+
 
         return false;
     }

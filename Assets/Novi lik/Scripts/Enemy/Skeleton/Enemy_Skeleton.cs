@@ -71,11 +71,11 @@ public class Enemy_Skeleton : Enemy
             }
             else if (CompareTag("Enemy_Skeleton_Red"))
             {
-                DropCoins(3, 0.5f);
+                DropCoins(5, 0.5f);
             }
             else if (CompareTag("Enemy_Skeleton_Blue"))
             {
-                DropCoins(5, 0.5f);
+                DropCoins(3, 0.5f);
             }
         }
         else
